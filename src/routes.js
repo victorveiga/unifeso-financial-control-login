@@ -3,6 +3,7 @@ import {BrowserRouter, Route, Switch, Redirect} from 'react-router-dom';
 
 // páginas:
 import Logon from './pages/Logon';
+import Register from './pages/Register';
 
 /*
 const PrivateRoute = ({component: Component, ...rest}) => (
@@ -21,7 +22,8 @@ export default function Routes() {
     return (
         <BrowserRouter>
             <Switch>
-                <Route path="/" component={Logon} />  
+                <Route path="/register" component={Register} />
+                <Route path="/" component={Logon} />
             </Switch>
         </BrowserRouter>
     );

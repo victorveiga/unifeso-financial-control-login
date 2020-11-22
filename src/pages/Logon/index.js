@@ -1,7 +1,15 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './style.css';
+import logo from '../../assets/logo.png';
+import React, {useState} from 'react';
+import {Link, useHistory} from 'react-router-dom';
 
 export default () => {
+
+    const history                 = useHistory();
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+
     return (
         <div className="container" id="logon_principal">
             <div className="row">
@@ -10,8 +18,7 @@ export default () => {
 
                         <div className="logo mb-3">
                             <div className="col-md-12 text-center">
-                                <h1>Logo</h1>
-                                <h1>Conecte-se</h1>
+                                <h1><img src={logo} alt="kanban board" height="80px" width="80px"/></h1>
                             </div>
                         </div>
 
@@ -25,6 +32,8 @@ export default () => {
                                     id="username" 
                                     placeholder="Entre com seu nome de usuário" 
                                     required
+                                    value={username}
+                                    onChange={e => setUsername(e.target.value)}
                                 />
                             </div>
                             <div className="form-group">
@@ -36,9 +45,11 @@ export default () => {
                                     className="form-control"
                                     placeholder="Entre com sua senha" 
                                     required
+                                    value={password}
+                                    onChange={e => setPassword(e.target.value)}
                                 />
                             </div>
-                            <div className="col-md-12 text-center ">
+                            <div className="col-md-12 text-center">
                                 <button type="submit" className=" btn btn-block mybtn btn-success tx-tfm">Entrar</button>
                             </div>
                             <div className="col-md-12 ">
@@ -48,12 +59,7 @@ export default () => {
                                 </div>
                             </div>
                             <div className="form-group">
-                                <p className="text-center">Não tem conta? <a id="signup">Inscreva-se aqui</a></p>
-                                <div>
-                                    <p style={{textAlign: 'center', marginTop: '0', paddingTop: 0}}>
-                                        <a href="https://github.com/victorveiga">Victor Veiga</a>
-                                    </p>
-                                </div>
+                                <p className="text-center">Não tem conta? <Link to="/register" id="signup">Inscreva-se aqui</Link></p>
                             </div>
                             
                         </form>

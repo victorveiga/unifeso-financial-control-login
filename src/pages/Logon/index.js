@@ -3,17 +3,41 @@ import './style.css';
 import logo from '../../assets/logo.png';
 import React, {useState} from 'react';
 import {Link, useHistory} from 'react-router-dom';
+import api from '../../services/api.js';
+import Alert from 'react-bootstrap/Alert'
 
 export default () => {
 
     const history                 = useHistory();
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [msgErro , setMsgErro ] = useState(false);
+
+    async function handleLogin(e){
+        e.preventDefault();
+        try {
+            const result = await api.post('/users/validate', {username, password});
+
+            if (result.data == null) throw new Error('Sem dados')
+            let {id, username, createdAt} = result.data
+
+            localStorage.setItem('user', {id, username, createdAt})
+            history.push('/home')
+        } catch (error) {
+            setMsgErro(true)
+        }
+        
+    }
 
     return (
         <div className="container" id="logon_principal">
             <div className="row">
-                <div className="col-md-4 mx-auto">
+                <div className="col-md-6 mx-auto">
+                    <dir>
+                        <Alert variant="danger" show={msgErro}>
+                            Erro ao validar o usuário. Por favor, verifique o nome de usuário e a senha antes de continuar.
+                        </Alert>
+                    </dir>
                     <div className="form">
 
                         <div className="logo mb-3">
@@ -22,7 +46,7 @@ export default () => {
                             </div>
                         </div>
 
-                        <form method="post" name="login">
+                        <form onSubmit={handleLogin} method="post" name="login">
                             <div className="form-group">
                             <label>Nome de usuário</label>
                                 <input 
@@ -60,8 +84,8 @@ export default () => {
                             </div>
                             <div className="form-group">
                                 <p className="text-center">Não tem conta? <Link to="/register" id="signup">Inscreva-se aqui</Link></p>
+                                <p className="text-center">Esqueceu a senha? <Link to="/register" id="signup">Clique aqui</Link></p>
                             </div>
-                            
                         </form>
 
                     </div>     

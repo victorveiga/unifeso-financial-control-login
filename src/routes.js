@@ -4,6 +4,7 @@ import {BrowserRouter, Route, Switch, Redirect} from 'react-router-dom';
 // páginas:
 import Logon from './pages/Logon';
 import Register from './pages/Register';
+import Home from './pages/Home';
 
 /*
 const PrivateRoute = ({component: Component, ...rest}) => (
@@ -23,6 +24,7 @@ export default function Routes() {
         <BrowserRouter>
             <Switch>
                 <Route path="/register" component={Register} />
+                <Route path="/home" component={Home} />
                 <Route path="/" component={Logon} />
             </Switch>
         </BrowserRouter>

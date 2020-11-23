@@ -3,12 +3,23 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './style.css';
 import logo from '../../assets/logo.png';
 import {Link, useHistory} from 'react-router-dom';
+import api from '../../services/api.js'
 
 export default () => {
 
     const history                  = useHistory();
     const [username, setUsername]  = useState('');
     const [password, setPassword]  = useState('');
+    const [email   , setEmail   ]  = useState(''); 
+
+    async function handleRegistrar(e){
+        e.preventDefault();
+        const req = await api.post('/users', {username, password, email});
+
+        if (req.data.id){
+            history.push('/');
+        }
+    }
 
     return (
         <div className="container" id="register_principal">
@@ -23,7 +34,7 @@ export default () => {
                             </div>
                         </div>
 
-                        <form method="post" name="register">
+                        <form onSubmit={handleRegistrar} method="post" name="register">
                             <div className="row">
                                 <div className="col-md-5 mx-auto">
                                     <div className="form-group row">
@@ -48,6 +59,18 @@ export default () => {
                                             placeholder="Informe uma senha para seu usuário" 
                                             value={password}
                                             onChange={e => setPassword(e.target.value)}
+                                            required />
+                                    </div>
+                                    <div className="form-group row">
+                                        <label for="email">E-mail</label>
+                                        <input 
+                                            type="text" 
+                                            name="email"  
+                                            className="form-control" 
+                                            id="email" 
+                                            placeholder="Informe seu email" 
+                                            value={email}
+                                            onChange={e => setEmail(e.target.value)}
                                             required />
                                     </div>
                                 </div>

@@ -16,7 +16,7 @@ export default () => {
 
     async function handleRegistrar(e){
         e.preventDefault();
-        const req = await api.post('/users', {username, password, email});
+        const req = await api.post('/users', {username, password, email, rps_pergunta, rps_resposta});
 
         if (req.data.id){
             history.push('/');

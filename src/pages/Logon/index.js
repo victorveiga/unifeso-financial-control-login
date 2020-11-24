@@ -19,11 +19,11 @@ export default () => {
             const result = await api.post('/users/validate', {username, password});
 
             if (result.data == null) throw new Error('Sem dados')
-            let {id, username, createdAt} = result.data
 
-            localStorage.setItem('user', {id, username, createdAt})
+            localStorage.setItem('user', JSON.stringify(result.data))
             history.push('/home')
         } catch (error) {
+            console.log(`Erro disparado: ${error.message}`)
             setMsgErro(true)
         }
         

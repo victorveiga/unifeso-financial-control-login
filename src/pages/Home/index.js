@@ -41,6 +41,8 @@ class Home extends Component {
                                     Id: {this.user?this.user.id:''}
                                     <br/>
                                     Criado em: {this.user?this.user.createdAt:''}
+                                    <br/>
+                                    E-mail: {this.user?this.user.email:''}
                                 </div>
                             </div>
 

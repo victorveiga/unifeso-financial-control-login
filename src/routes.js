@@ -5,6 +5,7 @@ import {BrowserRouter, Route, Switch, Redirect} from 'react-router-dom';
 import Logon from './pages/Logon';
 import Register from './pages/Register';
 import Home from './pages/Home';
+import Recover from './pages/Recover';
 
 /*
 const PrivateRoute = ({component: Component, ...rest}) => (
@@ -25,6 +26,7 @@ export default function Routes() {
             <Switch>
                 <Route path="/register" component={Register} />
                 <Route path="/home" component={Home} />
+                <Route path="/recover" component={Recover} />
                 <Route path="/" component={Logon} />
             </Switch>
         </BrowserRouter>

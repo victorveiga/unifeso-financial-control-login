@@ -4,7 +4,7 @@ import logo from '../../assets/logo.png';
 import React, {useState} from 'react';
 import {Link, useHistory} from 'react-router-dom';
 import api from '../../services/api.js';
-import Alert from 'react-bootstrap/Alert'
+import Alert from 'react-bootstrap/Alert';
 
 export default () => {
 
@@ -84,7 +84,7 @@ export default () => {
                             </div>
                             <div className="form-group">
                                 <p className="text-center">Não tem conta? <Link to="/register" id="signup">Inscreva-se aqui</Link></p>
-                                <p className="text-center">Esqueceu a senha? <Link to="/register" id="signup">Clique aqui</Link></p>
+                                <p className="text-center">Esqueceu a senha? <Link to="/recover" id="signup">Clique aqui</Link></p>
                             </div>
                         </form>
 
